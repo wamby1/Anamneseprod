@@ -1,0 +1,54 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Organzuordnung";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2">
+            <ul class="list-group">
+                <li></li>
+            </ul>
+        </div>
+        <div class="col-10">
+            <form method="post" asp-action="Groborgan" id="organzuordnungForm">
+                <div class="row">
+                    @foreach (var organ in Model)
+                    {
+                        <div class="col-md-3 col-sm-6 mb-4">
+                            <button type="button" class="btn btn-primary btn-block text-center organ-btn" data-organ="@organ">
+                                <img src="~/images/kopf.png" alt="@organ" class="img-fluid" style="max-height: 150px;" />
+                                <p>@organ</p>
+                            </button>
+                        </div>
+                    }
+                </div>
+                <input type="hidden" id="selectedItem" name="selectedItem" value="" />
+                <div class="text-right">
+                    <button type="submit" id="weiterButton" class="btn btn-primary" disabled>Weiter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $('.organ-btn').click(function () {
+                $('.organ-btn').removeClass('btn-warning').addClass('btn-primary');
+                $(this).removeClass('btn-primary').addClass('btn-warning');
+                $('#selectedItem').val($(this).data('organ'));
+                $('#weiterButton').prop('disabled', false);
+            });
+
+            $('#organzuordnungForm').submit(function (event) {
+                if (!$('#selectedItem').val()) {
+                    event.preventDefault();
+                    alert('Bitte wählen Sie ein Organ aus.');
+                }
+            });
+        });
+    </script>
+}

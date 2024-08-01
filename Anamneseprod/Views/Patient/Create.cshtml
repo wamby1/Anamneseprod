@@ -1,0 +1,73 @@
+﻿@model Patientdata
+
+<div class="container mt-5 p-4 border rounded shadow-sm">
+    <h2 class="mb-4 text-center text-primary">Patientenformular</h2>
+    <form asp-action="Create" method="post">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="NameFamily" class="form-label">Nachname</label>
+                <input asp-for="NameFamily" class="form-control" required />
+                <span asp-validation-for="NameFamily" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="NameGiven" class="form-label">Vorname</label>
+                <input asp-for="NameGiven" class="form-control" required />
+                <span asp-validation-for="NameGiven" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Gender" class="form-label">Geschlecht</label>
+                <select asp-for="Gender" class="form-select">
+                    <option value="">Bitte auswählen</option>
+                    <option value="male">Männlich</option>
+                    <option value="female">Weiblich</option>
+                    <option value="other">Divers</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="Birthdate" class="form-label">Geburtsdatum</label>
+                <input asp-for="Birthdate" type="date" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AddressLine" class="form-label">Adresse</label>
+            <input asp-for="AddressLine" class="form-control" />
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="AddressCity" class="form-label">Stadt</label>
+                <input asp-for="AddressCity" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="AddressPostalCode" class="form-label">Postleitzahl</label>
+                <input asp-for="AddressPostalCode" type="number" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="Phone" class="form-label">Telefon</label>
+                <input asp-for="Phone" type="tel" class="form-control" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label asp-for="Email" class="form-label">Email adresse</label>
+                <input asp-for="Email" type="email" class="form-control" />
+            </div>
+        </div>
+
+       
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-block">Speichern</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

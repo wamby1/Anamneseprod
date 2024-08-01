@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Question>
+
+<h1>Fragen</h1>
+<a asp-action="Create" class="btn btn-primary">Neue Frage erstellen</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Frage</th>
+            <th>Mehrfachauswahl</th>
+            <th>Antworten</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.Title</td>
+                <td>@(question.Multichoice ? "Ja" : "Nein")</td>
+                <td>
+                    @if (question.Answers != null)
+                    {
+                        foreach (var answer in question.Answers)
+                        {
+                            <div>@answer.Value</div>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

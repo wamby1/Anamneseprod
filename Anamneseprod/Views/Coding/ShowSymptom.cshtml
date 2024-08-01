@@ -1,0 +1,62 @@
+﻿@model List<Symptom>
+
+<div class="title-container">
+    <div class="p-4 p-md-5 mb-4 mt-3 rounded  bg-body-secondary">
+        <div class="col-12 text-center">
+            <h1> Hauptschmerzen  </h1>
+            <p class="lead my-3"></p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="row w-100">
+        <div class="col-md-3">
+            <div class="list-group">
+                <!-- Placeholder for any additional content -->
+            </div>
+        </div>
+        <div class="col-md-9">
+            <form method="post" asp-action="ShowSymptoms" id="detailOrganForm">
+                <div class="row justify-content-center">                   
+                    <div class="col-md-12">
+                        <ul class="list-group">
+                            @foreach (var symptom in Model)
+                            {
+                                <li class="list-group-item coding-item bg-primary text-white" data-id="@symptom.ID">
+                                    @symptom.Name
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <input type="hidden" id="symptom" name="id" value="" />
+                <div class="text-right mt-3">
+                    <button type="submit" id="weiterButton" class="btn btn-primary" disabled>Weiter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $('.coding-item').click(function () {
+                $('.coding-item').removeClass('active btn-warning text-white').addClass('bg-primary');
+                $(this).removeClass('bg-primary').addClass('btn-warning');
+                $('#symptom').val($(this).data('id'));
+                $('#weiterButton').prop('disabled', false);
+                console.log($(this).data('id'));
+            });
+
+            $('#detailOrganForm').submit(function (event) {
+                if (!$('#symptom').val()) {
+                    event.preventDefault();
+                    alert('Bitte wählen Sie ein Detail aus.');
+                }
+            });
+        });
+    </script>
+}

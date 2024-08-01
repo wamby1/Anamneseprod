@@ -1,0 +1,44 @@
+﻿@model List<Eigenanamnese>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-end mb-3">
+        <a asp-controller="Coding" class="btn btn-primary btn-new-anamnese">Neue Anamnese erstellen</a>
+    </div>
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            Keine Eigenanamnese vorhanden. Klicken Sie auf die Schaltfläche, um eine neue zu erstellen.
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Anamnese ID: @item.description</h5>
+                            <p class="card-text">FHIR ID: @item.FhirID</p>
+                            <p class="card-text">Patient ID: @item.PatientID</p>
+                            <p class="card-text">Questionaire ID: @item.QuestionaireID</p>
+                            
+                            <a href="#" class="btn btn-primary">Freigeben</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    .btn-new-anamnese {
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-new-anamnese:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+</style>
