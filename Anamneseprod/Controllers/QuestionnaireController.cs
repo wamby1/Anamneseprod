@@ -8,8 +8,11 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Text;
 using Microsoft.Extensions.Options;
+using Anamneseprod.Classes;
+using Microsoft.AspNetCore.Authorization;
 namespace Anamneseprod.Controllers
 {
+    [Authorize(Roles = MyRole.Role_Admin)]
     public class QuestionnaireController : Controller
     {
         private readonly EigenanamneseDbContext _context;

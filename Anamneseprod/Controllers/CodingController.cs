@@ -1,7 +1,10 @@
-﻿using Anamneseprod.Data;
+﻿using Anamneseprod.Classes;
+using Anamneseprod.Data;
 using Anamneseprod.Models;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -12,6 +15,8 @@ using System.Text.Json;
 
 namespace Anamneseprod.Controllers
 {
+    //[Authorize(Roles = $"{MyRole.Role_Admin}, {MyRole.Role_User}")]
+    [Authorize]
     public class CodingController : Controller
     {
         private List<QuestionnaireViewModel> _questions=new List<QuestionnaireViewModel>();
@@ -19,13 +24,19 @@ namespace Anamneseprod.Controllers
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly string _FhirApiUrl;
         private readonly ILogger<CodingController> _logger;
-        public CodingController(EigenanamneseDbContext context, IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings, ILogger<CodingController> logger)
+		
+		public CodingController(
+            EigenanamneseDbContext context,
+            IHttpClientFactory httpClientFactory, 
+            IOptions<ApiSettings> apiSettings,
+			ILogger<CodingController> logger)
         {
             _context = context;
             _httpClientFactory = httpClientFactory;
             _FhirApiUrl = apiSettings.Value.FhirApiurl;
             _logger = logger;
-        }
+			
+		}
         public IActionResult Index()
         {
             List<string> koerperteile = new List<string> { "Kopf", "Bauch", "Rücken", "Arm/Hand", "Bein/Fuß", "Hals", "Brust", "Ganzer Körper" };
@@ -137,9 +148,11 @@ namespace Anamneseprod.Controllers
             }
 
             // TODO: Replace with actual patient ID after implementing identity
-            int patientFhir = 765072;
+            var myuser = _context.applicationUsers.Where(u => u.UserName == User.Identity.Name).ToList();
+            string patientFhir = myuser[0].FhirID;
+			//765072;
 
-            var newFhirQuestionnaireRes = ConvertToFhirQuestionnaire(userChoices, patientFhir, questionnaire.FhirID);
+			var newFhirQuestionnaireRes = ConvertToFhirQuestionnaire(userChoices, patientFhir, questionnaire.FhirID);
             var fhirId = await SendToFhirServer(newFhirQuestionnaireRes);
 
             if (string.IsNullOrEmpty(fhirId))
@@ -213,7 +226,7 @@ namespace Anamneseprod.Controllers
                 })
                 .ToListAsync();
         }
-        private QuestionnaireResponse ConvertToFhirQuestionnaire(List<Quest> quests, int patientId, string questionnaireId)
+        private QuestionnaireResponse ConvertToFhirQuestionnaire(List<Quest> quests, string patientId, string questionnaireId)
         {
             var response = new QuestionnaireResponse
             {

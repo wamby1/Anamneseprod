@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using System.Text;
 using Microsoft.Extensions.Options;
+using Anamneseprod.Classes;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Anamneseprod.Controllers
 {
+    [Authorize(Roles = $"{MyRole.Role_Admin}, {MyRole.Role_User}")]
     public class PatientController : Controller
     {
         private readonly EigenanamneseDbContext _context;
@@ -60,7 +63,7 @@ namespace Anamneseprod.Controllers
             }
             return View("Index");
         }
-        private Hl7.Fhir.Model.Patient ConvertToFhirPatient(Patientdata obj)
+        public Hl7.Fhir.Model.Patient ConvertToFhirPatient(Patientdata obj)
         {
             return new Hl7.Fhir.Model.Patient
             {
@@ -100,7 +103,7 @@ namespace Anamneseprod.Controllers
             };
         }
 
-        private async Task<string> SendToFhirServer(Hl7.Fhir.Model.Patient fhirPatient)
+        public async Task<string> SendToFhirServer(Hl7.Fhir.Model.Patient fhirPatient)
         {
             var client = _httpClientFactory.CreateClient();
             var json = new FhirJsonSerializer().SerializeToString(fhirPatient);

@@ -1,10 +1,13 @@
-﻿using Anamneseprod.Data;
+﻿using Anamneseprod.Classes;
+using Anamneseprod.Data;
 using Anamneseprod.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
 namespace Anamneseprod.Controllers
 {
+    [Authorize(Roles =MyRole.Role_Admin)]
     public class QuestionController : Controller
     {
         private readonly EigenanamneseDbContext _context;
