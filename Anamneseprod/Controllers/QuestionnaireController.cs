@@ -76,6 +76,7 @@ namespace Anamneseprod.Controllers
                 .Where(q => q.CodeID == codeId)
                 .Include(q => q.Answers)
                 .ToList();
+
             var questionnaire = new Hl7.Fhir.Model.Questionnaire
             {
                 

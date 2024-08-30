@@ -17,6 +17,27 @@
             {
                 <div class="col mb-4">
                     <div class="card h-100">
+                        <div class="card-body d-flex flex-row align-items-center">
+                            <div class="flex-grow-1">
+                                <h5 class="card-title">Anamnese ID: @item.description</h5>
+                                <p class="card-text">FHIR ID: @item.FhirID</p>
+                                <p class="card-text">Patient ID: @item.PatientID</p>
+                                <p class="card-text">Questionaire ID: @item.QuestionaireID</p>
+                                <a href="#" class="btn btn-primary">Freigeben</a>
+                            </div>
+                            <div class="ms-3">
+                                <img src="~/images/kopf.png" class="img-fluid" alt="Bildbeschreibung">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        @* <div class="row row-cols-1 row-cols-md-2 g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-4">
+                    <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Anamnese ID: @item.description</h5>
                             <p class="card-text">FHIR ID: @item.FhirID</p>
@@ -28,17 +49,27 @@
                     </div>
                 </div>
             }
-        </div>
+        </div> *@
     }
 </div>
 
 <style>
+     .card img {
+        max-width: 150px; 
+        height: auto; 
+    }
+
+    media (max-width: 576px) {
+        .card img {
+            max-width: 75px; 
+        }
+    }
     .btn-new-anamnese {
         transition: background-color 0.3s ease;
     }
 
-        .btn-new-anamnese:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
+     .btn-new-anamnese:hover {
+          background-color: #0056b3;
+          border-color: #0056b3;
+     }
 </style>

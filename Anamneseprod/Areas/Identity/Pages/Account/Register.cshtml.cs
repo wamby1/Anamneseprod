@@ -212,6 +212,7 @@ namespace Anamneseprod.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, MyRole.Role_User);
                     }
+
                     await _userManager.AddToRoleAsync(user, MyRole.Role_User);
 
                     var userId = await _userManager.GetUserIdAsync(user);

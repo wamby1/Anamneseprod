@@ -2,20 +2,23 @@
 @{
     ViewData["Title"] = "Organzuordnung";
 }
-
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-2">
-            <ul class="list-group">
-                <li></li>
-            </ul>
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-4">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="py-2 text-primary">Groborganzuordnung</h2>
+            </div>
         </div>
-        <div class="col-10">
+    </div>
+    <div class="card-body p-4">
+<div class="container mt-5">
+    <div class="row">     
+        <div class="col-12">
             <form method="post" asp-action="Groborgan" id="organzuordnungForm">
                 <div class="row">
                     @foreach (var organ in Model)
                     {
-                        <div class="col-md-3 col-sm-6 mb-4">
+                         <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
                             <button type="button" class="btn btn-primary btn-block text-center organ-btn" data-organ="@organ">
                                 <img src="~/images/kopf.png" alt="@organ" class="img-fluid" style="max-height: 150px;" />
                                 <p>@organ</p>
@@ -30,8 +33,9 @@
             </form>
         </div>
     </div>
+    </div>
 </div>
-
+</div>
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
