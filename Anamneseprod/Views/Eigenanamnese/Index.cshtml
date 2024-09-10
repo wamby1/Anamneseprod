@@ -2,8 +2,9 @@
 
 <div class="container mt-4">
     <div class="d-flex justify-content-end mb-3">
-        <a asp-controller="Coding" class="btn btn-primary btn-new-anamnese">Neue Anamnese erstellen</a>
+        <a asp-controller="Coding" class="btn btn-primary btn-new-anamnese"><i class="bi bi-plus-lg"></i> Neue Anamnese erstellen</a>
     </div>
+
     @if (Model == null || !Model.Any())
     {
         <div class="alert alert-warning" role="alert">
@@ -16,60 +17,94 @@
             @foreach (var item in Model)
             {
                 <div class="col mb-4">
-                    <div class="card h-100">
+                    <div class="card h-100 shadow-sm custom-card-bg">
                         <div class="card-body d-flex flex-row align-items-center">
                             <div class="flex-grow-1">
-                                <h5 class="card-title">Anamnese ID: @item.description</h5>
-                                <p class="card-text">FHIR ID: @item.FhirID</p>
-                                <p class="card-text">Patient ID: @item.PatientID</p>
-                                <p class="card-text">Questionaire ID: @item.QuestionaireID</p>
-                                <a href="#" class="btn btn-primary">Freigeben</a>
+                                <h5 class="card-title mb-2">Anamnese ID: @item.description</h5>
+                                <p class="card-text"><strong>FHIR ID:</strong> @item.FhirID</p>
+                                <p class="card-text"><strong>Patient ID:</strong> @item.PatientID</p>
+                                <p class="card-text"><strong>Questionnaire ID:</strong> @item.QuestionaireID</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="#" class="btn btn-success me-2"> Freigeben</a>
+                                    <div class="btn-group">
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Optionen
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            <li><a class="dropdown-item" href="#">Bearbeiten</a></li>
+                                            <li><a class="dropdown-item text-danger" href="#">Löschen</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                             <div class="ms-3">
-                                <img src="~/images/kopf.png" class="img-fluid" alt="Bildbeschreibung">
+                                <img src="~/images/kopf.png" class="img-fluid rounded" alt="Bildbeschreibung">
                             </div>
                         </div>
                     </div>
                 </div>
             }
         </div>
-        @* <div class="row row-cols-1 row-cols-md-2 g-4">
-            @foreach (var item in Model)
-            {
-                <div class="col mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Anamnese ID: @item.description</h5>
-                            <p class="card-text">FHIR ID: @item.FhirID</p>
-                            <p class="card-text">Patient ID: @item.PatientID</p>
-                            <p class="card-text">Questionaire ID: @item.QuestionaireID</p>
-                            
-                            <a href="#" class="btn btn-primary">Freigeben</a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div> *@
     }
 </div>
 
+<!-- Styles -->
 <style>
-     .card img {
-        max-width: 150px; 
-        height: auto; 
+    /* Hintergrundfarbe */
+   /*  body {
+        background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+        color: #333;
+    } */
+
+    .custom-card-bg {
+        background-color: #f8f9fa; /* Helles Grau statt komplett Weiß */
+        border: 1px solid #dee2e6; /* Leichte Umrandung für Definition */
+    }
+
+    .btn-new-anamnese {
+        background-color: #007bff;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-new-anamnese:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .card {
+        border-radius: 0.75rem;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+        max-width: 100px;
+        height: auto;
+        border-radius: 0.5rem;
     }
 
     media (max-width: 576px) {
         .card img {
-            max-width: 75px; 
+            max-width: 75px;
         }
     }
-    .btn-new-anamnese {
-        transition: background-color 0.3s ease;
-    }
 
-     .btn-new-anamnese:hover {
-          background-color: #0056b3;
-          border-color: #0056b3;
-     }
+    .btn-group .dropdown-menu {
+        min-width: 160px;
+    }
 </style>

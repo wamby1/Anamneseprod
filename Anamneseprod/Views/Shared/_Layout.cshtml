@@ -16,9 +16,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
+        <nav class="navbar  navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Anamneseprod</a>
+                <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="Index">Anamneseprod</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - Anamneseprod - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <p class="text-center text-body-secondary">Made with ❤️ by Anamneseprod</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -63,3 +63,39 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<style>
+    .navbar {
+        background-color: #e3f2fd;
+        
+    }
+
+    .navbar-brand {
+        color: #007bff;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+        .navbar-brand:hover {
+            color: #0056b3;
+        }
+
+    .nav-link {
+        color: #007bff;
+        transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+        .nav-link:hover {
+            color: #0056b3;
+            background-color: rgba(0, 123, 255, 0.1);
+            border-radius: 0.25rem;
+        }
+
+    .navbar-toggler {
+        border: none;
+    }
+
+    .navbar-toggler-icon {
+        filter: brightness(0) invert(1);
+    }
+</style>

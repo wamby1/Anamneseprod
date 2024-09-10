@@ -1,5 +1,61 @@
 ﻿
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
- </div>   
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4">Willkommen zur AnamneseProd </h1>
+        <p class="lead">Erfassen und verwalten Sie Ihre Eigenanamnese sicher und einfach.</p>
+        <hr class="my-4">
+    </div>
+
+    <!-- Cards Section -->
+    <div class="row">
+        <!-- Eigenanamnese erstellen -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-file-earmark-medical-fill display-1 text-primary"></i>
+                    <h5 class="card-title mt-3">Neue Eigenanamnese</h5>
+                    <p class="card-text">Erstellen Sie eine neue Eigenanamnese für Ihren bevorstehenden Arztbesuch.</p>
+                    @* <a href="/Anamnese/Create" class="btn btn-primary">Erstellen</a> *@
+                </div>
+            </div>
+        </div>
+
+        <!-- Eigenanamnese bearbeiten -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-pencil-square display-1 text-success"></i>
+                    <h5 class="card-title mt-3">Eigenanamnese bearbeiten</h5>
+                    <p class="card-text">Bearbeiten Sie Ihre bestehende Anamnese, um Ihre Angaben zu aktualisieren.</p>
+                    @* <a href="/Anamnese/Edit" class="btn btn-success">Bearbeiten</a> *@
+                </div>
+            </div>
+        </div>
+
+        <!-- Anamnese freigeben -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-share-fill display-1 text-warning"></i>
+                    <h5 class="card-title mt-3">Anamnese freigeben</h5>
+                    <p class="card-text">Teilen Sie Ihre Anamnese sicher mit Ihrer Arztpraxis, um die Behandlung zu optimieren.</p>
+                    @* <a href="/Anamnese/Freigeben" class="btn btn-warning">Freigeben</a> *@
+                </div>
+            </div>
+        </div>
+
+       @*  <!-- Termin buchen -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-calendar-check-fill display-1 text-info"></i>
+                    <h5 class="card-title mt-3">Termin buchen</h5>
+                    <p class="card-text">Buchen Sie einen Arzttermin basierend auf Ihrer Anamnese.</p>
+                    <a href="/Termin/Buchen" class="btn btn-info">Termin buchen</a>
+                </div>
+            </div>
+        </div> *@
+    </div>
+</div>
